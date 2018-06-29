@@ -42,7 +42,7 @@ public class signup extends Activity {
                 } else if (TFsignupusername.getText().length()<1 || TFsignupusername.getText().length()>12){
                     TFsignupusername.setError("Enter a valid username");
                 }
-                else if (!(TFsignuppass.getText().length()>6) || (!(TFsignuppass1.getText().length()<12))){
+                else if (!(isValidPassword(TFsignuppass.getText().toString()))){
                     TFsignuppass.setError("Password 6-12 Characters ");
 
                 } else if (!password.equals(password1)){
@@ -58,6 +58,12 @@ public class signup extends Activity {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         Pattern p = java.util.regex.Pattern.compile(ePattern);
         Matcher m = p.matcher(email);
+        return m.matches();
+    }
+    public boolean isValidPassword(String password) {
+        String ePattern1 = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        Pattern p1 = java.util.regex.Pattern.compile(ePattern1);
+        Matcher m = p1.matcher(password);
         return m.matches();
     }
 }
