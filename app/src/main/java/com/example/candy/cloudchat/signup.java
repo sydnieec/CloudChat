@@ -43,7 +43,7 @@ public class signup extends Activity {
                     TFsignupusername.setError("Enter a valid username");
                 }
                 else if (!(TFsignuppass.getText().length()>6) || (!(TFsignuppass1.getText().length()<12))){
-                    TFsignuppass.setError("Password must be longer than 5 characters");
+                    TFsignuppass.setError("Password 6-12 Characters ");
 
                 } else if (!password.equals(password1)){
                     TFsignuppass1.setError("Passwords must match");
