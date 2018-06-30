@@ -1,6 +1,7 @@
 package com.example.candy.cloudchat;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 import android.app.Activity;
@@ -8,43 +9,59 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.ArrayList;
 
-import java.util.ArrayList;
-import java.util.ArrayList;
 
 /**
  * Created by candy on 6/28/2018.
  */
 
 
-}
-public class ChatroomAdapter extends ArrayAdapter<String>  {
-    private ArrayList<String>names;
-    private Activity context;
-    public ChatroomAdapter(@NonNull Activity context,ArrayList<String>names ) {
-        super(context,R.layout.contact_row_frag,names);
 
-        this.names = names;
-        this.context = context;
+public class ChatroomAdapter extends BaseAdapter{
+    private Context mContext;
+    private List<Chatroom> mchatroomList;
+    //Constructor
+
+
+    public ChatroomAdapter(Context mContext, List<Chatroom> mchatroomList) {
+        this.mContext = mContext;
+        this.mchatroomList = mchatroomList;
     }
 
-    public View getView(int position, View view, ViewGroup Parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
+    @Override
+    public int getCount() {
+        return mchatroomList.size();
+    }
 
-        View rowView = view;
-        if (rowView == null) {
-            rowView = inflater.inflate(R.layout.contact_row_frag, Parent, false);
-        }
-        TextView textView = rowView.findViewById(R.id.nameText);
-        TextView date = rowView.findViewById(R.id.dateInfo);
-        date.setText("");
-        ImageView callStatus = rowView.findViewById(R.id.callStatus);
-        callStatus.setImageResource(0);
+    @Override
+    public Object getItem(int position) {
+        return mchatroomList.get(position);
+    }
 
-        textView.setText(names.get(position));
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-        return rowView;
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View v= View.inflate(mContext, R.layout.pic_chat_ppl_list, null);
+        TextView roomname = (TextView) v.findViewById(R.id.chatroomname);
+        TextView intpeople= (TextView) v.findViewById(R.id.numberofpeople);
+
+        //Set text for TextView
+        roomname.setText(mchatroomList.get(position).getName());
+        intpeople.setText(String.valueOf(mchatroomList.get(position).getNumberofpeople()));
+
+        //Save product id to tag
+        v.setTag(mchatroomList.get(position).getId());
+
+        return v;
     }
 }

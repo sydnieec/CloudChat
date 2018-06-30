@@ -3,6 +3,7 @@ package com.example.candy.cloudchat;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import java.util.*;
@@ -15,7 +16,7 @@ import android.widget.EditText;
  * Created by candy on 6/27/2018.
  */
 
-public class signup extends Activity {
+public class signup extends AppCompatActivity {
     EditText TFsignupemail;
     EditText TFsignupusername;
     EditText TFsignuppass;
@@ -38,12 +39,17 @@ public class signup extends Activity {
                 String password= TFsignuppass.getText().toString();
                 String password1=TFsignuppass1.getText().toString();
                 if(!isValidEmailAddress(TFsignupemail.getText().toString())){
-                    TFsignupemail.setError("Enter a valid email");
+                    TFsignupemail.setError("Enter a valid emaill");
                 } else if (TFsignupusername.getText().length()<1 || TFsignupusername.getText().length()>12){
                     TFsignupusername.setError("Enter a valid username");
                 }
                 else if (!(isValidPassword(TFsignuppass.getText().toString()))){
-                    TFsignuppass.setError("Password 6-12 Characters ");
+                    TFsignuppass.setError("# start-of-string\n" +
+                            " # a digit must occur at least once\n" +
+                            "# a lower case letter must occur at least once\n" +
+                            "# an upper case letter must occur at least once\n" +
+                            " # no whitespace allowed in the entire string\n" +
+                            "# anything, at least eight places though\n");
 
                 } else if (!password.equals(password1)){
                     TFsignuppass1.setError("Passwords must match");
@@ -61,7 +67,7 @@ public class signup extends Activity {
         return m.matches();
     }
     public boolean isValidPassword(String password) {
-        String ePattern1 = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        String ePattern1 = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}";
         Pattern p1 = java.util.regex.Pattern.compile(ePattern1);
         Matcher m = p1.matcher(password);
         return m.matches();
