@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/splashscreengood"
-    android:theme = "@style/AppTheme"
+    android:background="#dcefef"
+    android:theme="@style/AppTheme"
     tools:context="com.example.candy.cloudchat.MainActivity">
 
 
@@ -27,7 +27,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/message_edit"
         android:layout_width="273dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.333" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/send_button"
         android:layout_width="66dp"
         android:layout_height="36dp"
         android:layout_marginBottom="8dp"
@@ -63,17 +63,18 @@
         app:layout_constraintTop_toTopOf="@+id/textView6"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/TVusername"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="i'm fat"
-        android:textColor="#fff"
-        android:textSize="14sp"
+    <ListView
+        android:id="@+id/MessageListView"
+        style="@style/Widget.AppCompat.Light.ListView.DropDown"
+        android:layout_width="match_parent"
+        android:layout_height="459dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>

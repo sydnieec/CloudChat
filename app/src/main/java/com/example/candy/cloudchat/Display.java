@@ -49,7 +49,7 @@ public class Display extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Clicked on =" +view.getTag(), Toast.LENGTH_SHORT).show();
                 Intent g = new Intent(Display.this, chats.class);
                 String username =getIntent().getStringExtra("Username");
-                g.putExtra("Username",username );
+                g.putExtra("Username",username);
                 startActivity(g);
 
             }
