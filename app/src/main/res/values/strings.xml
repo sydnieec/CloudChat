@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cloud Chat</string>
+    <string name="empty_string" />
 </resources>

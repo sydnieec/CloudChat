@@ -2,11 +2,11 @@ package com.example.candy.cloudchat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
 import android.view.View;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class HomeActivity extends AppCompatActivity {
@@ -18,7 +18,10 @@ public class HomeActivity extends AppCompatActivity {
         Button login = (Button) findViewById(R.id.Bdisplay);
         login.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
+               EditText a= (EditText) findViewById(R.id.TFusername);
+                String str= a.getText().toString();
                 Intent i= new Intent (HomeActivity.this, Display.class);
+                i.putExtra("Username",str );
                 startActivity(i);
             }});
     }
