@@ -20,30 +20,50 @@ public class chats extends AppCompatActivity {
   private MessageAdapter adapter;
   private List<message> mMessageList;
   EditText message_edit;
+  int l= 0;
+
+
+
+
   @Override
-    protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.chats);
-    message_edit= (EditText) findViewById(R.id.message_edit);
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.chats);
+
+
+    final String username = getIntent().getStringExtra("Username");
+    message_edit = (EditText) findViewById(R.id.message_edit);
     Button send_button = (Button) findViewById(R.id.send_button);
 
-    String username =getIntent().getStringExtra("Username");
+
 
     lvMessages = (ListView) findViewById(R.id.MessageListView);
     mMessageList = new ArrayList<>();
-    mMessageList.add(new message(1,username,"yo"));
-    mMessageList.add(new message(2,username,"hey"));
-    mMessageList.add(new message(3,username,"fuck youu "));
+
 
 
     //Init Adapter
-    adapter= new MessageAdapter(getApplicationContext(), mMessageList);
+    adapter = new MessageAdapter(getApplicationContext(), mMessageList);
     lvMessages.setAdapter(adapter);
+    send_button.setOnClickListener(new Button.OnClickListener() {
+      public void onClick(View v) {
 
+        Log.d("myTag", "This is my message");
+        if (message_edit.getText().length() < 1 || message_edit.getText().length() < 1) {
+          message_edit.setError("Message between 1-10 characters");
+
+        } else {
+          l++;
+          mMessageList.add(new message(l, username, message_edit.getText().toString()));
+          message_edit.setText("");
+
+        }
+      }
+    });
 
   }
 
-}
 
+}
 
 
