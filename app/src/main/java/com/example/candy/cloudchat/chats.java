@@ -39,8 +39,8 @@ public class chats extends AppCompatActivity {
     send_button.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
 
-        if (message_edit.getText().length() < 1 || message_edit.getText().length() < 1) {
-          message_edit.setError("Message between 1-10 characters");
+        if (message_edit.getText().length() < 1 || message_edit.getText().length() >30) {
+          message_edit.setError("Message between 1-30 characters");
 
         } else {
           l++;
