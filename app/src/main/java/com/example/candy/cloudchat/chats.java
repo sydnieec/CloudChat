@@ -48,6 +48,8 @@ public class chats extends AppCompatActivity {
           message_edit.setText("");
           adapter = new MessageAdapter(getApplicationContext(), mMessageList);
           lvMessages.setAdapter(adapter);
+         lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+
         }
       }
     });
