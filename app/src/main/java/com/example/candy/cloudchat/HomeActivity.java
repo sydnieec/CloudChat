@@ -1,5 +1,6 @@
 package com.example.candy.cloudchat;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -15,6 +16,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Button login = (Button) findViewById(R.id.Bdisplay);
         login.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
