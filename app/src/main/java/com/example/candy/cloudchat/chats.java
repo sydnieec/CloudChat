@@ -39,7 +39,6 @@ public class chats extends AppCompatActivity {
     send_button.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
 
-        Log.d("myTag", "This is my message");
         if (message_edit.getText().length() < 1 || message_edit.getText().length() < 1) {
           message_edit.setError("Message between 1-10 characters");
 
@@ -47,7 +46,8 @@ public class chats extends AppCompatActivity {
           l++;
           mMessageList.add(new message(l, username, message_edit.getText().toString()));
           message_edit.setText("");
-
+          adapter = new MessageAdapter(getApplicationContext(), mMessageList);
+          lvMessages.setAdapter(adapter);
         }
       }
     });
