@@ -15,6 +15,8 @@ import android.widget.Toast;
 import java.util.Random;
 import java.util.ArrayList;
 import java.util.List;
+import android.widget.Button;
+
 
 /**
  * Created by candy on 6/26/2018.
@@ -25,7 +27,7 @@ public class Display extends AppCompatActivity {
     private ChatroomAdapter adapter;
     private List<Chatroom> mchatroomList;
     int [] IMAGES = {R.drawable.donut, R.drawable.milk, R.drawable.watermelon};
-
+    Button buttonaddroom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,16 @@ public class Display extends AppCompatActivity {
 
             }
         });
+        buttonaddroom = (Button) findViewById(R.id.buttonaddroom);
+        buttonaddroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i= new Intent(getApplicationContext(), PopActivity.class);
+                startActivity(i);
+            }
+        });
+
+
 
 
     }

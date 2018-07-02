@@ -10,19 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HomeActivity">
-
-        </activity>
-        <activity android:name=".Display"></activity>
-        <activity android:name=".signup"></activity>
-        <activity android:name=".chats"></activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".Display" />
+        <activity android:name=".signup" />
+        <activity android:name=".chats" />
+        <activity android:name=".PopActivity"></activity>
     </application>
 
 </manifest>
