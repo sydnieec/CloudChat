@@ -19,7 +19,8 @@
         <activity android:name=".HomeActivity"></activity>
         <activity android:name=".Display" />
         <activity android:name=".signup" />
-        <activity android:name=".chats"/>
+        <activity android:name=".chats">
+        </activity>
 
         <activity android:name=".PopActivity"
             android:theme="@style/AppTheme.Popme"

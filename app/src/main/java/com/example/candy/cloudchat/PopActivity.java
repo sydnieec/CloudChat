@@ -30,6 +30,8 @@ public class PopActivity extends Activity {
                         String str= createroomname.getText().toString();
                         Intent i= new Intent (PopActivity.this, Display.class);
                         i.putExtra("chatroom",str );
+                        String username =getIntent().getStringExtra("Username");
+                        i.putExtra("Username",username);
                         startActivity(i);
 
                     }

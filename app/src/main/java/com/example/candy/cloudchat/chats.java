@@ -33,6 +33,7 @@ public class chats extends AppCompatActivity {
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
+
     final String username = getIntent().getStringExtra("Username");
     message_edit = (EditText) findViewById(R.id.message_edit);
     Button send_button = (Button) findViewById(R.id.send_button);
@@ -48,7 +49,8 @@ public class chats extends AppCompatActivity {
           message_edit.setText("");
           adapter = new MessageAdapter(getApplicationContext(), mMessageList);
           lvMessages.setAdapter(adapter);
-        // lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+          lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+
 
         }
       }
@@ -56,6 +58,7 @@ public class chats extends AppCompatActivity {
 
 
     lvMessages = (ListView) findViewById(R.id.MessageListView);
+
     mMessageList = new ArrayList<>();
 
     //Init Adapter

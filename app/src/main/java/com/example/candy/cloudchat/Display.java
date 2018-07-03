@@ -54,11 +54,11 @@ public class Display extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //this does something
-                Toast.makeText(getApplicationContext(), "Clicked on =" +view.getTag(), Toast.LENGTH_SHORT).show();
                 Intent g = new Intent(Display.this, chats.class);
                 String username =getIntent().getStringExtra("Username");
                 g.putExtra("Username",username);
-                startActivity(g);
+                    startActivity(g);
+
 
             }
         });
@@ -67,7 +67,10 @@ public class Display extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i= new Intent(getApplicationContext(), PopActivity.class);
+                String username =getIntent().getStringExtra("Username");
+                i.putExtra("Username",username);
                 startActivity(i);
+
             }
         });
 
