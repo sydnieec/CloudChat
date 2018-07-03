@@ -29,18 +29,21 @@ public class Display extends AppCompatActivity {
     private List<Chatroom> mchatroomList;
     int [] IMAGES = {R.drawable.donut, R.drawable.milk, R.drawable.watermelon};
     Button buttonaddroom;
+    int k=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
+        final String chatroom = getIntent().getStringExtra("chatroom");
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         lvchatroomname = (ListView) findViewById(R.id.Listview_chatroom);
         mchatroomList = new ArrayList<>();
+        if (getIntent().getStringExtra("chatroom") != null){
+            k++;
+            mchatroomList.add(new Chatroom(k,chatroom,1));
+        }
 
-        mchatroomList.add(new Chatroom(1,"hello",2));
-        mchatroomList.add(new Chatroom(2,"plzwork",1));
-        mchatroomList.add(new Chatroom(3,"wtf",3));
 
 
         //Init Adapter

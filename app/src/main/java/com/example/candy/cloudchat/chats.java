@@ -39,8 +39,8 @@ public class chats extends AppCompatActivity {
     send_button.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
 
-        if (message_edit.getText().length() < 1 || message_edit.getText().length() >30) {
-          message_edit.setError("Message between 1-30 characters");
+        if (message_edit.getText().length() < 1 || message_edit.getText().length() >60) {
+          message_edit.setError("Message between 1-60 characters");
 
         } else {
           l++;
@@ -48,7 +48,7 @@ public class chats extends AppCompatActivity {
           message_edit.setText("");
           adapter = new MessageAdapter(getApplicationContext(), mMessageList);
           lvMessages.setAdapter(adapter);
-         lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+        // lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
 
         }
       }
