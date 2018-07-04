@@ -32,6 +32,17 @@ public class Display extends AppCompatActivity {
     int k=0;
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==0 && resultCode == Activity.RESULT_OK) {
+            String username = data.getStringExtra(("Username"));
+            String chatroom = data.getStringExtra("chatroom");
+            k++;
+            mchatroomList.add(new Chatroom(k,chatroom,1));
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.display);
@@ -39,10 +50,7 @@ public class Display extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         lvchatroomname = (ListView) findViewById(R.id.Listview_chatroom);
         mchatroomList = new ArrayList<>();
-        if (getIntent().getStringExtra("chatroom") != null){
-            k++;
-            mchatroomList.add(new Chatroom(k,chatroom,1));
-        }
+   
 
 
 
@@ -69,10 +77,12 @@ public class Display extends AppCompatActivity {
                 Intent i= new Intent(getApplicationContext(), PopActivity.class);
                 String username =getIntent().getStringExtra("Username");
                 i.putExtra("Username",username);
-                startActivity(i);
+
+                startActivityForResult(i,0);
 
             }
         });
+
 
 
 

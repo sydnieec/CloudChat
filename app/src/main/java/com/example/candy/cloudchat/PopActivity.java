@@ -29,10 +29,13 @@ public class PopActivity extends Activity {
                     } else {
                         String str= createroomname.getText().toString();
                         Intent i= new Intent (PopActivity.this, Display.class);
-                        i.putExtra("chatroom",str );
+                        //i.putExtra("chatroom",str );
                         String username =getIntent().getStringExtra("Username");
-                        i.putExtra("Username",username);
-                        startActivity(i);
+                        //i.putExtra("Username",username);
+                        //startActivity(i);
+                        setResult(Activity.RESULT_OK,
+                                new Intent().putExtra("Username",username).putExtra("chatroom",str));
+                        finish();
 
                     }
             }});
