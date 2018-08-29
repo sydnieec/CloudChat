@@ -50,7 +50,7 @@ public class Display extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         lvchatroomname = (ListView) findViewById(R.id.Listview_chatroom);
         mchatroomList = new ArrayList<>();
-   
+
 
 
 

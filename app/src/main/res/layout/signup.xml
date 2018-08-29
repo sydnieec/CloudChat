@@ -166,7 +166,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="Email "
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView8"
