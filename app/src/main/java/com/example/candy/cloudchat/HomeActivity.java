@@ -30,7 +30,6 @@ public class HomeActivity extends AppCompatActivity {
     private String login_url="http://ec2-13-59-209-87.us-east-2.compute.amazonaws.com:4000/login";
     private StringRequest MyStringRequest;
     private RequestQueue MyRequestQueue;
-    private boolean valid_user;
 
 
     @Override
@@ -42,23 +41,17 @@ public class HomeActivity extends AppCompatActivity {
         login.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
 
-               EditText a= (EditText) findViewById(R.id.TFusername);
+                EditText a= (EditText) findViewById(R.id.TFusername);
                 String str= a.getText().toString();
-                sendPost();
-
-                if (valid_user=false) {
-                Toast errorToast = Toast.makeText(HomeActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
-                errorToast.show();
-
-                    }else {
+                EditText password= (EditText) findViewById(R.id.TFpassword);
+                String passwordStr= password.getText().toString();
+                sendPost(str,passwordStr);
                     //  sendRequestAndPrintResponse();
-                    Intent i = new Intent(HomeActivity.this, Display.class);
-                    i.putExtra("Username", str);
-                    startActivity(i);
-                }
+
+
             }});
     }
-    private void sendPost(){
+    private void  sendPost(final String userStr, final String strPass){
         MyRequestQueue=Volley.newRequestQueue(this);
          MyStringRequest = new StringRequest(Request.Method.POST, login_url, new Response.Listener<String>() {
             @Override
@@ -67,6 +60,14 @@ public class HomeActivity extends AppCompatActivity {
                     JSONObject obj = new JSONObject(response);
                     String valid = obj.getJSONObject("status").getString("error");
                     Log.i(TAG, "Response: " + valid);
+                    if (valid.equals("true")) {
+                        Toast errorToast = Toast.makeText(HomeActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
+                        errorToast.show();
+                    }else {
+                        Intent i = new Intent(HomeActivity.this, Display.class);
+                        i.putExtra("Username", userStr);
+                        startActivity(i);
+                    }
                 } catch (Exception e){
                     e.printStackTrace();
                 }
@@ -81,8 +82,8 @@ public class HomeActivity extends AppCompatActivity {
         }) {
             protected Map<String, String> getParams() {
                 Map<String, String> MyData = new HashMap<String, String>();
-                MyData.put("Username:", "bob");
-                MyData.put ("Password:", "je" );//Add the data you'd like to send to the server.
+                MyData.put("username", userStr);
+                MyData.put ("password", strPass );//Add the data you'd like to send to the server.
                 return MyData;
 
             }
