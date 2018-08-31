@@ -61,7 +61,7 @@ public class Display extends AppCompatActivity {
 //        super.onActivityResult(requestCode, resultCode, data);
         if(requestCode ==0 && resultCode == Activity.RESULT_OK) {
             String username = data.getStringExtra(("Username"));
-            String chatroom = data.getStringExtra("chatroom");
+    //        String chatroom = data.getStringExtra("chatroom");
             mchatroomList.clear();
             sendRequestAndPrintResponse();
          //   k++;

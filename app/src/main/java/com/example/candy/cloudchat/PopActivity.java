@@ -48,12 +48,6 @@ public class PopActivity extends Activity {
                     } else {
                         String str= createroomname.getText().toString();
                         sendPost(str);
-                        Intent i= new Intent (PopActivity.this, Display.class);
-                        String username =getIntent().getStringExtra("Username");
-                        setResult(Activity.RESULT_OK,
-                                new Intent().putExtra("Username",username).putExtra("chatroom",str));
-                        finish();
-
                     }
             }});
 
@@ -78,7 +72,23 @@ public class PopActivity extends Activity {
         MyStringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.i(TAG, "Reponse:" + response.toString());
+                try {
+                    JSONObject obj = new JSONObject(response);
+                    String message = obj.getJSONObject("status").getString("message");
+                    if (message.equals("Error the room exist already")) {
+                        Toast errorToast = Toast.makeText(PopActivity.this, message.toString(), Toast.LENGTH_SHORT);
+                        errorToast.show();
+                    }else {
+                        Intent i= new Intent (PopActivity.this, Display.class);
+                        String username =getIntent().getStringExtra("Username");
+                        setResult(Activity.RESULT_OK,
+                                new Intent().putExtra("Username",username));
+                        finish();
+
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
             }
         }, new Response.ErrorListener() {
