@@ -59,7 +59,6 @@ public class HomeActivity extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response);
                     String valid = obj.getJSONObject("status").getString("error");
-                    Log.i(TAG, "Response: " + valid);
                     if (valid.equals("true")) {
                         Toast errorToast = Toast.makeText(HomeActivity.this, "Invalid username or password", Toast.LENGTH_SHORT);
                         errorToast.show();

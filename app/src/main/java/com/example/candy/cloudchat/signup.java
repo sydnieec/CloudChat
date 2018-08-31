@@ -98,7 +98,7 @@ public class signup extends AppCompatActivity {
                 }
 
             }
-        }, new Response.ErrorListener() { //Create an error listener to handle errors appropriately.
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.i(TAG, "Error" + error.toString());
@@ -108,7 +108,7 @@ public class signup extends AppCompatActivity {
                 Map<String, String> MyData = new HashMap<String, String>();
                 MyData.put("email", strEmail);
                 MyData.put ("username", strUsername );
-                MyData.put("password", strPassword); //Add the data you'd like to send to the server.
+                MyData.put("password", strPassword);
                 return MyData;
 
             };
