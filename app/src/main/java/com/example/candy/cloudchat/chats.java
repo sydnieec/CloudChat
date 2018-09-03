@@ -66,33 +66,34 @@ public class chats extends AppCompatActivity {
       jsonObj.put("message",message_edit.getText().toString() );
       jsonObj.put("username", username);
       jsmessage.put("data", jsonObj);
-      Log.i(TAG, jsmessage.toString());
+    // Log.i(TAG, jsmessage.toString());
 
        mSocket.emit("send",jsmessage);
     }
   private Emitter.Listener onNewMessage = new Emitter.Listener() {
     @Override
-    public void call(final Object.. args) {
-      getActivity().runOnUiThread(new Runnable() {
-
+    public void call(final Object... args) {
+      chats.this.runOnUiThread(new Runnable() {
         @Override
         public void run() {
           JSONObject data = (JSONObject) args[0];
-          String username;
-          String message;
+
           try {
-            username = data.getString("username");
-            message = data.getString("message");
+            String message1 = data.getJSONObject("data").getString("message");
+            String username= data.getJSONObject("data").getString("username");
+            l++;
+            mMessageList.add(new message(l, username,message1));
+            adapter = new MessageAdapter(getApplicationContext(), mMessageList);
+            lvMessages.setAdapter(adapter);
+            lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
           } catch (JSONException e) {
             return;
           }
-
-          // add the message to view
+          //add message to view
         }
       });
     }
   };
-
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -100,12 +101,13 @@ public class chats extends AppCompatActivity {
     setContentView(R.layout.chats);
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     final String username = getIntent().getStringExtra("Username");
-    message_edit = (EditText) findViewById(R.id.message_edit);
+      String chatroomName =getIntent().getStringExtra("chatroomName");
+      message_edit = (EditText) findViewById(R.id.message_edit);
     Button send_button = (Button) findViewById(R.id.send_button);
     sendRequestAndPrintResponse();
- //   mSocket.on("new message", onNewMessage);
+      mSocket.emit("joinRoom",chatroomName);
+    mSocket.on("message",onNewMessage);
     mSocket.connect();
-
     send_button.setOnClickListener(new Button.OnClickListener() {
       public void onClick(View v) {
 
@@ -113,17 +115,19 @@ public class chats extends AppCompatActivity {
           message_edit.setError("Message between 1-60 characters");
 
         } else {
+          message_edit.setText("");
+
           try {
             attemptSend();
           } catch (JSONException e) {
             e.printStackTrace();
           }
-          l++;
-          mMessageList.add(new message(l, username, message_edit.getText().toString()));
-          message_edit.setText("");
-          adapter = new MessageAdapter(getApplicationContext(), mMessageList);
-          lvMessages.setAdapter(adapter);
-          lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+//          l++;
+//          mMessageList.add(new message(l, username, message_edit.getText().toString()));
+//          message_edit.setText("");
+//          adapter = new MessageAdapter(getApplicationContext(), mMessageList);
+//          lvMessages.setAdapter(adapter);
+//          lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
         }
       }
     });
@@ -148,8 +152,21 @@ public class chats extends AppCompatActivity {
         try {
           JSONObject obj = new JSONObject(response);
           String success = obj.getJSONObject("status").getString("type");
-          Log.i(TAG, response.toString());
           if (success.equals("Success")){
+            JSONObject o = obj.getJSONObject("data");
+            JSONArray jArray = o.getJSONArray("messages");
+            for (int i = 0; i < jArray.length(); i++)
+            {
+              String content = jArray.getJSONObject(i).getString("content");
+              String username=jArray.getJSONObject(i).getString("username");
+              l++;
+              mMessageList.add(new message(l, username,content));
+              adapter = new MessageAdapter(getApplicationContext(), mMessageList);
+              lvMessages.setAdapter(adapter);
+              lvMessages.setSelection(lvMessages.getAdapter().getCount()-1);
+
+            }
+
           }else {
             Toast errorToast = Toast.makeText(chats.this,"Chatroom does not exist.", Toast.LENGTH_SHORT);
             errorToast.show();
