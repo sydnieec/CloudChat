@@ -130,6 +130,8 @@ public class Display extends AppCompatActivity {
                 Intent g = new Intent(Display.this, chats.class);
                 String username =getIntent().getStringExtra("Username");
                 g.putExtra("Username",username);
+                String chatroomName = mchatroomList.get(i).getName();
+                g.putExtra("chatroomName", chatroomName);
                     startActivity(g);
 
 
