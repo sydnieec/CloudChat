@@ -48,8 +48,6 @@ public class signup extends AppCompatActivity {
         TFsignuppass= (EditText) findViewById(R.id.TFsignuppass);
         TFsignuppass1= (EditText) findViewById(R.id.TFsignuppass1);
 
-
-
         Button login = (Button) findViewById(R.id.Bsignup1);
         login.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v) {
@@ -61,19 +59,18 @@ public class signup extends AppCompatActivity {
                     TFsignupusername.setError("Enter a valid username");
                 }
                 else if (!(isValidPassword(TFsignuppass.getText().toString()))){
-                    TFsignuppass.setError("# start-of-string\n" +
+                    TFsignuppass.setError(
                             " # a digit must occur at least once\n" +
                             "# a lower case letter must occur at least once\n" +
                             "# an upper case letter must occur at least once\n" +
                             " # no whitespace allowed in the entire string\n" +
-                            "# anything, at least eight places though\n");
+                            "# anything, at least 4 places though\n");
 
                 } else if (!password.equals(password1)){
                     TFsignuppass1.setError("Passwords must match");
                 }
                 else {
                     sendPost(TFsignupemail.getText().toString(),TFsignupusername.getText().toString(),password);
-
                 }
             }});
     }
@@ -117,12 +114,15 @@ public class signup extends AppCompatActivity {
 
         MyRequestQueue.add(MyStringRequest);
     }
+
+    //check if valid text entered
     public boolean isValidEmailAddress(String email) {
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         Pattern p = java.util.regex.Pattern.compile(ePattern);
         Matcher m = p.matcher(email);
         return m.matches();
     }
+
     public boolean isValidPassword(String password) {
         String ePattern1 = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{4,}";
         Pattern p1 = java.util.regex.Pattern.compile(ePattern1);

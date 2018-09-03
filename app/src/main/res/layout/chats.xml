@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dcefef"
+    android:background="#f7e6c8"
     android:theme="@style/AppTheme"
     tools:context="com.example.candy.cloudchat.MainActivity">
 

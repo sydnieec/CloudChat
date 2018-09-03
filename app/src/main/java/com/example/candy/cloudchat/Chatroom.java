@@ -9,8 +9,6 @@ public class Chatroom {
     private String name;
     private int numberofpeople;
 
-
-
     //Constructor
     public Chatroom (int id, String name, int numberofpeople){
         this.id=id;

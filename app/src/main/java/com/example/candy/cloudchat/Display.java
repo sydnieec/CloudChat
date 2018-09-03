@@ -46,7 +46,6 @@ public class Display extends AppCompatActivity {
     private ListView lvchatroomname;
     private ChatroomAdapter adapter;
     private List<Chatroom> mchatroomList;
-    int [] IMAGES = {R.drawable.donut, R.drawable.milk, R.drawable.watermelon};
     Button buttonaddroom;
     int k=0;
     Random rand = new Random();
@@ -55,18 +54,12 @@ public class Display extends AppCompatActivity {
     private String url= "http://ec2-13-59-209-87.us-east-2.compute.amazonaws.com:4000/chatrooms";
 
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode ==0 && resultCode == Activity.RESULT_OK) {
+        if(requestCode == 0 && resultCode == Activity.RESULT_OK) {
             String username = data.getStringExtra(("Username"));
-    //        String chatroom = data.getStringExtra("chatroom");
             mchatroomList.clear();
             sendRequestAndPrintResponse();
-         //   k++;
-        //    int  n = rand.nextInt(10) + 1;
-        //    mchatroomList.add(new Chatroom(k,chatroom,n));
         }
     }
     private void sendRequestAndPrintResponse() {
@@ -109,8 +102,6 @@ public class Display extends AppCompatActivity {
         mRequestQueue.add(stringRequest);
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,7 +124,6 @@ public class Display extends AppCompatActivity {
                 String chatroomName = mchatroomList.get(i).getName();
                 g.putExtra("chatroomName", chatroomName);
                     startActivity(g);
-
 
             }
         });

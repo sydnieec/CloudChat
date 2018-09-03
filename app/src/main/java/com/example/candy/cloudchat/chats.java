@@ -59,7 +59,6 @@ public class chats extends AppCompatActivity {
       String chatroomName =getIntent().getStringExtra("chatroomName");
       final String username = getIntent().getStringExtra("Username");
 
-
       JSONObject jsmessage = new JSONObject();
       jsmessage.put("room", chatroomName);
       JSONObject jsonObj = new JSONObject();
@@ -102,6 +101,7 @@ public class chats extends AppCompatActivity {
     this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     final String username = getIntent().getStringExtra("Username");
       String chatroomName =getIntent().getStringExtra("chatroomName");
+      setTitle(chatroomName);
       message_edit = (EditText) findViewById(R.id.message_edit);
     Button send_button = (Button) findViewById(R.id.send_button);
     sendRequestAndPrintResponse();
@@ -115,10 +115,10 @@ public class chats extends AppCompatActivity {
           message_edit.setError("Message between 1-60 characters");
 
         } else {
-          message_edit.setText("");
 
           try {
             attemptSend();
+            message_edit.setText("");
           } catch (JSONException e) {
             e.printStackTrace();
           }

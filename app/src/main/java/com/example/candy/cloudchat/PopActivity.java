@@ -39,8 +39,6 @@ public class PopActivity extends Activity {
         setContentView(R.layout.activity_pop);
         buttoncreateroom= (Button) findViewById(R.id.buttonaddroom);
         createroomname= (EditText) findViewById(R.id.createroomname);
-
-
         buttoncreateroom.setOnClickListener(new Button.OnClickListener(){
                 public void onClick(View v) {
                     if (createroomname.getText().length()<1 || createroomname.getText().length()>10) {

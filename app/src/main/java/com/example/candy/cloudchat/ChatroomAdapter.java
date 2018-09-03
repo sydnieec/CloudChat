@@ -28,7 +28,6 @@ public class ChatroomAdapter extends BaseAdapter{
     private List<Chatroom> mchatroomList;
     //Constructor
 
-
     public ChatroomAdapter(Context mContext, List<Chatroom> mchatroomList) {
         this.mContext = mContext;
         this.mchatroomList = mchatroomList;
@@ -51,10 +50,15 @@ public class ChatroomAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v= View.inflate(mContext, R.layout.pic_chat_ppl_list, null);
+        View v;
+//        if (convertView == null) {
+//             v= View.inflate(mContext, R.layout.pic_chat_ppl_list, null);
+//        }else {
+//             v= convertView;
+//        }
+        v= View.inflate(mContext, R.layout.pic_chat_ppl_list, null);
         TextView roomname = (TextView) v.findViewById(R.id.chatroomname);
         TextView intpeople= (TextView) v.findViewById(R.id.numberofpeople);
-
         //Set text for TextView
         roomname.setText(mchatroomList.get(position).getName());
         intpeople.setText(String.valueOf(mchatroomList.get(position).getNumberofpeople()));
